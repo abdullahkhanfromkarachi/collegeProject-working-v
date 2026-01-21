@@ -13,7 +13,7 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
         const newStates = {}
         
         lights.forEach((light) => {
-          if (prev[light] === 'red') {  
+          if (prev[light] === 'red') {
             newStates[light] = 'green'
           } else if (prev[light] === 'green') {
             newStates[light] = 'yellow'
@@ -38,7 +38,7 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
         
         // Zebra crossing position is at 71% of the road (20rem from bottom)
         const zebraCrossingPos = 90
-        const stopDistance = 2 // Minimum distance between cars (in position percentage)
+        const stopDistance = 5 // Minimum distance between cars (in position percentage)
         
         const updatedCars = prevCars.map((car, index) => {
           const currentLight = lightStates[`light${car.lane}`]
@@ -130,7 +130,22 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
     return () => clearInterval(carInterval)
   }, [lightStates, setViolationRecord])
 
-
+  const handleAddCar = () => {
+    const newId = Math.max(...cars.map(c => c.id), 0) + 1
+    const randomLane = Math.floor(Math.random() * 3) + 1
+    const randomSubLane = Math.floor(Math.random() * 4) + 1
+    const isRuleViolator = Math.random() < 0.08 // 8% chance to be a rule violator
+    setCars([...cars, {
+      id: newId,
+      lane: randomLane,
+      subLane: randomSubLane,
+      position: -60,
+      speed: 1 + Math.random() * 0.8,
+      violations: 0,
+      isViolating: false,
+      isRuleViolator: isRuleViolator
+    }])
+  }
 
   const handleRemoveCar = (id) => {
     if (cars.length > 1) {
@@ -151,7 +166,12 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
           />
           Auto Mode
         </label>
-
+        <button 
+          onClick={handleAddCar}
+          className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+        >
+          + Add Car
+        </button>
       </div>
 
       {/* Main Content */}
@@ -186,7 +206,7 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
 
               {/* Lane - Big Road */}
               <div className="relative bg-black border-l-4 border-r-4 border-white overflow-hidden" style={{
-                height: '70rem',
+                height: '60rem',
                 backgroundImage: `
                   linear-gradient(90deg, 
                     transparent 0%, 
@@ -210,7 +230,7 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
               }}>
                 {/* Zebra Crossing Lines */}
                 <div className="absolute left-0 right-0 h-24" style={{
-                  bottom: '0  ',
+                  bottom: '0rem',
                   backgroundImage: 'repeating-linear-gradient(90deg, white 0px, white 35px, black 35px, black 70px)'
                 }}></div>
                 {cars.filter(car => car.lane === laneNum).map(car => (

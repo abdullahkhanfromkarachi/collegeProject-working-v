@@ -22,7 +22,7 @@ const TrafficLight = ({ state }) => {
           : 'bg-gray-700'
       }`}></div>
     </div>
-  ) 
+  )
 }
 
 export default TrafficLight

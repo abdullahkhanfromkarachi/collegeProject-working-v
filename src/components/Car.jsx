@@ -1,13 +1,13 @@
-      const Car = ({ car, isMoving, onDelete }) => {
-        const colors = [
-          { bg: 'bg-red-500', light: 'bg-red-700', accent: 'text-red-900' },
-          { bg: 'bg-blue-500', light: 'bg-blue-700', accent: 'text-blue-900' },
-          { bg: 'bg-green-500', light: 'bg-green-700', accent: 'text-green-900' },
-          { bg: 'bg-purple-500', light: 'bg-purple-700', accent: 'text-purple-900' },
-          { bg: 'bg-yellow-500', light: 'bg-yellow-700', accent: 'text-yellow-900' },
-          { bg: 'bg-pink-500', light: 'bg-pink-700', accent: 'text-pink-900' },
-        ]
-        const carColor = colors[car.id % colors.length]
+const Car = ({ car, isMoving, onDelete }) => {
+  const colors = [
+    { bg: 'bg-red-500', light: 'bg-red-700', accent: 'text-red-900' },
+    { bg: 'bg-blue-500', light: 'bg-blue-700', accent: 'text-blue-900' },
+    { bg: 'bg-green-500', light: 'bg-green-700', accent: 'text-green-900' },
+    { bg: 'bg-purple-500', light: 'bg-purple-700', accent: 'text-purple-900' },
+    { bg: 'bg-yellow-500', light: 'bg-yellow-700', accent: 'text-yellow-900' },
+    { bg: 'bg-pink-500', light: 'bg-pink-700', accent: 'text-pink-900' },
+  ]
+  const carColor = colors[car.id % colors.length]
 
   return (
     <div
