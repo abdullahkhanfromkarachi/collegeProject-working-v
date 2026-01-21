@@ -33,7 +33,7 @@ const CarDetails = ({ cars, totalViolations, violationRecord = [] }) => {
           <p className="text-sm text-blue-600 mt-4">Following traffic rules</p>
         </div>
       </div>
-      
+
       {/* Detailed Car Information */}
       <div className="mb-10">
         <h3 className="text-3xl font-bold text-slate-800 mb-8">🚙 Vehicle Information</h3>

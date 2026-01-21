@@ -11,15 +11,14 @@ function App() {
     light2: 'yellow',
     light3: 'green'
   })
+  const [autoMode, setAutoMode] = useState(true)
   const [cars, setCars] = useState([])
-  const [totalViolations, setTotalViolations] = useState(0)
-  const [violationRecord, setViolationRecord] = useState([])
 
   // Initialize cars with 8% being rule violators
   useEffect(() => {
     const initializeCars = () => {
       const initialCars = []
-      let carId = 1   
+      let carId = 1
       const numCars = 12
       const violatorCount = Math.ceil(numCars * 0.08) // 8% violators
       
@@ -41,17 +40,21 @@ function App() {
           speed: 1 + Math.random() * 0.8,
           violations: 0,
           isViolating: false,
-          isRuleViolator: isViolator
+          isRuleViolator: isViolator // 8% of cars are rule violators
         })
         carId++
       }
       return initialCars
     }
+    
     setCars(initializeCars())
   }, [])
+  const [totalViolations, setTotalViolations] = useState(0)
+  const [violationRecord, setViolationRecord] = useState([])
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-500 via-indigo-600 to-purple-700">
+      {/* Navigation Bar */}
       <nav className="bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -77,15 +80,28 @@ function App() {
               >
                 Car Details
               </button>
-               
+              <button 
+                onClick={() => setCurrentPage('control')}
+                className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                  currentPage === 'control' 
+                    ? 'bg-blue-500 text-white shadow-lg' 
+                    : 'border-2 border-white text-white hover:bg-white hover:text-slate-700'
+                }`}
+              >
+                Control Panel
+              </button>
             </div>
           </div>
         </div>
       </nav>
+
+      {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8">
         {currentPage === 'simulation' ? (
           <TrafficSimulation 
             lightStates={lightStates} 
+            autoMode={autoMode}
+            setAutoMode={setAutoMode}
             setLightStates={setLightStates}
             cars={cars}
             setCars={setCars}
@@ -104,6 +120,8 @@ function App() {
           <ControlPanel 
             lightStates={lightStates}
             setLightStates={setLightStates}
+            autoMode={autoMode}
+            setAutoMode={setAutoMode}
           />
         )}
       </main>
