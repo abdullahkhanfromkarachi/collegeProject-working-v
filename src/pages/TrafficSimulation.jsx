@@ -135,16 +135,16 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
     const randomLane = Math.floor(Math.random() * 3) + 1
     const randomSubLane = Math.floor(Math.random() * 4) + 1
     const isRuleViolator = Math.random() < 0.08 // 8% chance to be a rule violator
-    setCars([...cars, {
-      id: newId,
-      lane: randomLane,
-      subLane: randomSubLane,
-      position: -60,
-      speed: 1 + Math.random() * 0.8,
-      violations: 0,
-      isViolating: false,
-      isRuleViolator: isRuleViolator
-    }])
+    // setCars([...cars, {
+    //   id: newId,
+    //   lane: randomLane,
+    //   subLane: randomSubLane,
+    //   position: -60,
+    //   speed: 1 + Math.random() * 0.8,
+    //   violations: 0,
+    //   isViolating: false,
+    //   isRuleViolator: isRuleViolator
+    // }])
   }
 
   const handleRemoveCar = (id) => {
@@ -157,7 +157,7 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
     <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-6 border-b-2 border-gray-200">
-        <label className="flex items-center gap-3 text-lg font-semibold text-slate-700 cursor-pointer">
+        {/* <label className="flex items-center gap-3 text-lg font-semibold text-slate-700 cursor-pointer">
           <input 
             type="checkbox" 
             checked={autoMode}
@@ -165,13 +165,13 @@ const TrafficSimulation = ({ lightStates, autoMode, setAutoMode, setLightStates,
             className="w-5 h-5 cursor-pointer"
           />
           Auto Mode
-        </label>
-        <button 
+        </label> */}
+        {/* <button 
           onClick={handleAddCar}
           className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
         >
           + Add Car
-        </button>
+        </button> */}
       </div>
 
       {/* Main Content */}

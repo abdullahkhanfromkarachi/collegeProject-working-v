@@ -80,7 +80,7 @@ function App() {
               >
                 Car Details
               </button>
-              <button 
+              {/* <button 
                 onClick={() => setCurrentPage('control')}
                 className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
                   currentPage === 'control' 
@@ -89,7 +89,7 @@ function App() {
                 }`}
               >
                 Control Panel
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -117,12 +117,13 @@ function App() {
             violationRecord={violationRecord}
           />
         ) : (
-          <ControlPanel 
-            lightStates={lightStates}
-            setLightStates={setLightStates}
-            autoMode={autoMode}
-            setAutoMode={setAutoMode}
-          />
+          // <ControlPanel 
+          //   lightStates={lightStates}
+          //   setLightStates={setLightStates}
+          //   autoMode={autoMode}
+          //   setAutoMode={setAutoMode}
+          // />
+          <div className=""></div>
         )}
       </main>
     </div>
